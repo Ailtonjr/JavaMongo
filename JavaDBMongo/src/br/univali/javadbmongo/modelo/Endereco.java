@@ -4,13 +4,13 @@ package br.univali.javadbmongo.modelo;
  *
  * @author Ailton Cardoso Jr
  */
-public class Endereço {
+public class Endereco {
 
     private String Logradouro;
     private int numero;
     private String complemento;
 
-    public Endereço(String Logradouro, int numero, String complemento) {
+    public Endereco(String Logradouro, int numero, String complemento) {
         this.Logradouro = Logradouro;
         this.numero = numero;
         this.complemento = complemento;
