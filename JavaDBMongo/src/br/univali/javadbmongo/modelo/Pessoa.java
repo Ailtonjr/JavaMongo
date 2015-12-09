@@ -28,7 +28,7 @@ public class Pessoa {
     }
 
     public Pessoa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.colecao = new Conexao().getColecao("pessoas");
     }
 
     public void insereBanco() {
@@ -75,21 +75,22 @@ public class Pessoa {
 
     public static Pessoa getById(String id) {
         Pessoa pessoa = new Pessoa();
-        BasicDBObject where = new BasicDBObject("_id", id);
+        BasicDBObject where = new BasicDBObject("_id", new ObjectId(id));
 
         DBCursor cursor = colecao.find(where);
         while (cursor.hasNext()) {
-            Endereco end = null;
             BasicDBObject documento = (BasicDBObject) cursor.next();
             pessoa.setNome(documento.getString("nome"));
-            System.out.println("Nome: " + documento.getString("nome"));
+            pessoa.setIdade(documento.getInt("idade"));
+
             BasicDBObject endereco = (BasicDBObject) documento.get("endereco");
             if (endereco != null) {
-                end = new Endereco(endereco.getString("logradouro"), endereco.getInt("numero"), endereco.getString("complemento"));
+                pessoa.setEndereco(new Endereco(endereco.getString("logradouro"), endereco.getInt("numero"), endereco.getString("complemento")));
             }
-            ArrayList<String> telefones = (ArrayList<String>) documento.get("telefone");
+
+            ArrayList<String> telefones = (ArrayList<String>) documento.get("telefones");
             if (telefones != null) {
-                pessoa.setEndereco(end);
+                pessoa.telefones = telefones;
             }
         }
         return pessoa;

@@ -19,7 +19,7 @@ public class Conexao {
     public Conexao() {
         try {
             this.con = new MongoClient();
-            this.banco = con.getDB("db_mongo");  //cria ou acessa uma instancia de db Mongo
+            this.banco = con.getDB("dbMongo");  //cria ou acessa uma instancia de db Mongo
         } catch (UnknownHostException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }
