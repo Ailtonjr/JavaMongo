@@ -3,6 +3,7 @@ package br.univali.javadbmongo.modelo;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
+import com.mongodb.WriteResult;
 import java.util.ArrayList;
 import org.bson.types.ObjectId;
 
@@ -17,18 +18,16 @@ public class Pessoa {
     private int idade;
     private ArrayList<String> telefones;
     private Endereco endereco;
-    private static DBCollection colecao;
+    private static DBCollection colecao = new Conexao().getColecao("pessoas");
 
     public Pessoa(String nome, int idade, Endereco end) {
         this.nome = nome;
         this.idade = idade;
         this.telefones = new ArrayList<>();
-        this.colecao = new Conexao().getColecao("pessoas");
         this.endereco = end;
     }
 
     public Pessoa() {
-        this.colecao = new Conexao().getColecao("pessoas");
     }
 
     public void insereBanco() {
@@ -49,7 +48,6 @@ public class Pessoa {
         }
         colecao.save(p1);
         this.id = (ObjectId) p1.get("_id");
-        System.out.println("Id " + this.id.toString());
     }
 
     public void updateBanco() {
@@ -94,6 +92,13 @@ public class Pessoa {
             }
         }
         return pessoa;
+    }
+    
+    public static void removeById(String id) {
+        BasicDBObject where = new BasicDBObject("_id", new ObjectId(id));
+
+        WriteResult wr = colecao.remove(where);
+        System.err.println(wr);
     }
 
     public void addTelefone(String tel) {

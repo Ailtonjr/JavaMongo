@@ -10,32 +10,41 @@ import br.univali.javadbmongo.modelo.Pessoa;
 
 /**
  *
- * @author 5108250
+ * @author Ailton Cardoso Jr
  */
 public class JavaDBMongo {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-//        Endereco end = new Endereco("Av atlantica", 2302, "Ap 1001");
-//        Pessoa pessoa = new Pessoa("Ailton", 5, end);
-//        pessoa.addTelefone("(47) 9943-1717");
-//        pessoa.addTelefone("(47) 9651-9651");
-//        pessoa.insereBanco();
-//        
+// Codigo para Iserir uma pessoa
+        
+        Endereco end = new Endereco("Av atlantica", 2302, "Ap 1001");
+        Pessoa pessoa = new Pessoa("Ailton", 5, end);
+        pessoa.addTelefone("(47) 9943-1717");
+        pessoa.addTelefone("(47) 9651-9651");
+        pessoa.insereBanco();
+
+// Codigo para Alterar uma pessoa 
+        
 //        pessoa.setNome("Joao");
 //        pessoa.updateBanco();
-        Pessoa pessoa = Pessoa.getById("566875dc974fd6e6e0b278db");
+        
+// Codigo para Buscar uma pessoa pelo ID e exibir seus atributos 
+        
+//        Pessoa pessoa = Pessoa.getById("566875dc974fd6e6e0b278db");
+//        System.out.println("Nome: " + pessoa.getNome());
+//        System.out.println("Idade: " + pessoa.getIdade());
+//        System.out.println("Logradouro: " + pessoa.getEndereco().getLogradouro());
+//        System.out.println("Complemento: " + pessoa.getEndereco().getComplemento());
+//        System.out.println("Numero: " + pessoa.getEndereco().getNumero());
+//        pessoa.getTelefone().stream().forEach((telefone) -> {
+//            System.out.println("Telefone " + telefone);
+//        });
 
-        System.out.println("Nome: " + pessoa.getNome());
-        System.out.println("Idade: " + pessoa.getIdade());
-        System.out.println("Logradouro: " + pessoa.getEndereco().getLogradouro());
-        System.out.println("Complemento: " + pessoa.getEndereco().getComplemento());
-        System.out.println("Numero: " + pessoa.getEndereco().getNumero());
-        pessoa.getTelefone().stream().forEach((telefone) -> {
-            System.out.println("Telefone " + telefone);
-        });
-
+        
+// Codigo para Remover uma pessoa pelo ID
+        
+//        Pessoa.removeById("566875cc974fd091c392d5a7");
+        
+        
     }
 }
